@@ -8,6 +8,9 @@ moods_data = []
 def home():
     return ("Hello server world : )")
 
+@app.route('/create_table')
+def create_table():
+    return
 
 @app.route('/send_moods', methods=['POST'])
 def send_moods():
