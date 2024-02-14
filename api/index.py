@@ -6,7 +6,7 @@ moods_data = []
 
 @app.route('/')
 def home():
-    return('index.html')
+    return render_template('index.html')
 
 
 @app.route('/about')
