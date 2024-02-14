@@ -6,12 +6,12 @@ moods_data = []
 
 @app.route('/')
 def home():
-    render_template('index.html')
+    return('index.html')
 
 
 @app.route('/about')
 def about():
-    render_template('about.html')
+    return('about.html')
 
 @app.route('/send_moods', methods=['POST'])
 def send_moods():
