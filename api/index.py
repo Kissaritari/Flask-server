@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, json
+from flask import Flask, jsonify, request, json, render_template
 
 app = Flask(__name__)
 
@@ -6,11 +6,12 @@ moods_data = []
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    render_template('index.html')
+
 
 @app.route('/about')
 def about():
-    return 'About'
+    render_template('about.html')
 
 @app.route('/send_moods', methods=['POST'])
 def send_moods():
