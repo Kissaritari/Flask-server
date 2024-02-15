@@ -25,7 +25,7 @@ def send_moods():
         return jsonify({"error":str(e)}),500
     
 @app.route('/get_moods', methods=['GET'])    
-def hae_keskiarvo():
+def get_moods():
     try:
         if not moods_data:
             return jsonify({"message": "Ei dataa saatavilla"}), 200
@@ -34,3 +34,9 @@ def hae_keskiarvo():
 
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
+    
+@app.route('/clear_moods', methods=['GET'])    
+def get_moods():
+    moods_data = []
+
+    return "Moods data cleared!"
