@@ -30,7 +30,7 @@ def get_moods():
         if not moods_data:
             return jsonify({"message": "Ei dataa saatavilla"}), 200
 
-        return jsonify({moods_data}), 200
+        return jsonify({"moods":moods_data}), 200
 
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
