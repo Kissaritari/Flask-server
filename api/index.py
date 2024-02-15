@@ -39,4 +39,4 @@ def get_moods():
 def clear_moods():
     moods_data.clear()
 
-    return "Moods data cleared!"
+    return "Moods data cleared!!"
