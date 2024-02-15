@@ -36,7 +36,7 @@ def get_moods():
         return jsonify({"error":str(e)}, 500)
     
 @app.route('/clear_moods', methods=['GET'])    
-def get_moods():
+def clear_moods():
     moods_data = []
 
     return "Moods data cleared!"
