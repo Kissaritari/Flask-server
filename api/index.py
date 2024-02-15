@@ -37,6 +37,6 @@ def get_moods():
     
 @app.route('/clear_moods', methods=['GET'])    
 def clear_moods():
-    moods_data = []
+    moods_data.clear()
 
     return "Moods data cleared!"
