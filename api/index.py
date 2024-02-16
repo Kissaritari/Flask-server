@@ -2,7 +2,8 @@ from flask import Flask, jsonify, request, json, render_template
 
 app = Flask(__name__)
 
-moods_data = []
+moods_data = {}
+
 
 @app.route('/')
 def home():
@@ -13,7 +14,9 @@ def home():
 def send_moods():
     try:
         data = request.get_json(force=True)
-        moods = data['moods']
+        moods = { 'moods':data['moods'],
+                 'time': data['time']
+                 }
 
         if moods is None:
             return jsonify({"error":"Wrong data"},400)
@@ -30,7 +33,8 @@ def get_moods():
         if not moods_data:
             return jsonify({"message": "Ei dataa saatavilla"}), 200
 
-        return jsonify({"moods":moods_data}), 200
+        return jsonify({"moods":moods_data,
+                        "time":moods_data}), 200
 
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
