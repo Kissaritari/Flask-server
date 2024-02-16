@@ -15,7 +15,8 @@ def send_moods():
     try:
         data = request.get_json(force=True)
         moods = {'mood':({
-                 'value':data['moods']
+                 'value':data['moods'],
+                 'time': data['time']
                  })}
 
         if moods is None:
@@ -33,8 +34,7 @@ def get_moods():
         if not moods_data:
             return jsonify({"message": "Ei dataa saatavilla"}), 200
 
-        return jsonify({"moods":moods_data,
-                        "time":moods_data}), 200
+        return jsonify({"moods":moods_data}), 200
 
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
