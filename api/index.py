@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, json, render_template
 app = Flask(__name__)
 
 moods_data = []
-
+users = []
 
 @app.route('/')
 def home():
