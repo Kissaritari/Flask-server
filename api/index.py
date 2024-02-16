@@ -1,12 +1,23 @@
 from flask import Flask, jsonify, request, json, render_template
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 app = Flask(__name__)
+
+uri = "mongodb+srv://username:Salasana123@cluster0.u6i2ndi.mongodb.net/?retryWrites=true&w=majority"
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
 
 moods_data = []
 users = []
 
 @app.route('/')
 def home():
+    try:
+        client.admin.command('ping')
+        print("Pinged your deployment. You successfully connected to MongoDB!")
+    except Exception as e:
+        print(e)
     return ("Hello server world : )")
 
 
