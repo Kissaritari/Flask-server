@@ -14,10 +14,10 @@ def home():
 def send_moods():
     try:
         data = request.get_json(force=True)
-        moods = {'mood':({
+        moods = ({
                  'value':data['moods'],
                  'time': data['time']
-                 })}
+                 })
 
         if moods is None:
             return jsonify({"error":"Wrong data"},400)
