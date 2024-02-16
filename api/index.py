@@ -8,8 +8,11 @@ uri = "mongodb+srv://username:Salasana123@cluster0.u6i2ndi.mongodb.net/?retryWri
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 
+db = client["data"]
+column = db["moods"]
+
+
 moods_data = []
-users = []
 
 @app.route('/')
 def home():
@@ -33,7 +36,7 @@ def send_moods():
         if moods is None:
             return jsonify({"error":"Wrong data"},400)
         
-        moods_data.append(moods)
+        x = column.insert_one(moods)
         return jsonify({"message": "Mood sent successfully"}), 200
     
     except Exception as e:
