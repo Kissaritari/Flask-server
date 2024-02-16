@@ -15,8 +15,7 @@ def send_moods():
     try:
         data = request.get_json(force=True)
         moods = {'mood':({
-                 'value':data['moods'],
-                 'time': data['time']
+                 'value':data['moods']
                  })}
 
         if moods is None:
