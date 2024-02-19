@@ -14,8 +14,7 @@ db = client["data"]
 column = db["moods"]
 
 
-moods_data = []
-
+#oletussivuna pelkistetty hello world, jättää myös vercelin lokiin viestin jos mongoDB toimii
 @app.route('/')
 def home():
     try:
@@ -59,8 +58,15 @@ def get_moods():
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
     
-@app.route('/clear_moods', methods=['GET'])    
-def clear_moods():
-    moods_data.clear()
+@app.route('/get_average', methods=['GET'])
+@cross_origin()    
+def get_average():
+    try:
+        cursor = column.find({},{"_id": 0})
+        result = list(cursor)
+        
+        return jsonify({'data':result}), 200
 
-    return "Moods data cleared!!"
+    except Exception as e:
+        return jsonify({"error":str(e)}, 500)
+    
