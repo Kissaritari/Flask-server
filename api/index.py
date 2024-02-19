@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, json, render_template
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -28,10 +29,12 @@ def home():
 def send_moods():
     try:
         data = request.get_json(force=True)
-        moods = ({
+        current_time = datetime.utcnow()
+
+        moods = {
                  "value":data["moods"],
-                 "time": data["time"]
-                 })
+                 "time": current_time
+                 }
 
         if moods is None:
             return jsonify({"error":"Wrong data"},400)
@@ -48,7 +51,10 @@ def get_moods():
         if not moods_data:
             return jsonify({"message": "Ei dataa saatavilla"}), 200
 
-        return jsonify({'data':moods_data}), 200
+        cursor = column.find({})
+        result = list(cursor)
+
+        return jsonify({'data':result}), 200
 
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
