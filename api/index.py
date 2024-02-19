@@ -48,7 +48,7 @@ def send_moods():
 @app.route('/get_moods', methods=['GET'])    
 def get_moods():
     try:
-        cursor = column.find({})
+        cursor = column.find({},{"_id": 0})
         result = list(cursor)
 
         return jsonify({'data':result}), 200
