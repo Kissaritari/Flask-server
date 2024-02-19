@@ -48,9 +48,6 @@ def send_moods():
 @app.route('/get_moods', methods=['GET'])    
 def get_moods():
     try:
-        if not moods_data:
-            return jsonify({"message": "Ei dataa saatavilla"}), 200
-
         cursor = column.find({})
         result = list(cursor)
 
