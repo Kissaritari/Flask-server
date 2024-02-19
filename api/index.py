@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, json, render_template
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from flask_cors import cross_origin
 from datetime import datetime
 
 app = Flask(__name__)
@@ -26,6 +27,7 @@ def home():
 
 
 @app.route('/send_moods', methods=['POST'])
+@cross_origin()
 def send_moods():
     try:
         data = request.get_json(force=True)
@@ -45,7 +47,8 @@ def send_moods():
     except Exception as e:
         return jsonify({"error":str(e)}),500
     
-@app.route('/get_moods', methods=['GET'])    
+@app.route('/get_moods', methods=['GET'])
+@cross_origin()    
 def get_moods():
     try:
         cursor = column.find({},{"_id": 0})
