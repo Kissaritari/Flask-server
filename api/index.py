@@ -40,7 +40,7 @@ def send_moods():
             return jsonify({"error":"Wrong data"},400)
         
         x = column.insert_one(moods)
-        return jsonify({"message": "Mood sent successfully", "inserted id": x.inserted_id.toString()}), 200
+        return jsonify({"message": "Mood sent successfully", "inserted id": str(x.inserted_id)}), 200
     
     except Exception as e:
         return jsonify({"error":str(e)}),500
