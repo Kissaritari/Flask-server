@@ -77,4 +77,4 @@ def get_ten():
 def clear_moods():
 
     x = column.delete_many({})
-    return (x)
+    return (str(x))
