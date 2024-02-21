@@ -58,15 +58,23 @@ def get_moods():
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
     
-@app.route('/get_average', methods=['GET'])
+@app.route('/get_ten', methods=['GET'])
 @cross_origin()    
-def get_average():
+def get_ten():
     try:
         cursor = column.find({},{"_id": 0})
         result = list(cursor)
         
-        return jsonify({'data':result}), 200
+        kymppi = result[-10:]
+    
+        return jsonify({'data':kymppi}), 200
 
     except Exception as e:
         return jsonify({"error":str(e)}, 500)
     
+@app.route('/clear_moods', methods=['GET'])
+@cross_origin()    
+def clear_moods():
+
+    x = column.delete_many({})
+    return (x)
